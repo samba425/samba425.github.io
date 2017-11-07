@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <script type="text/javascript">
+    var vvv = "6232468.123.456.1";
+    // console.log("value = " + vvv + " encr = " + encMsg(vvv));
+
+    reorder([1, 2, 3, 4], [1, 12, 3, 4])
+
+    function encMsg(msg) {
+        var msgArr = msg.split(".");
+        var len = msgArr.length;
+        var valid = true;
+
+        for (var i = 0; i < len; i++) {
+            if (Number(msgArr[i])) {
+                if (i + 1 != len) {
+
+                    if (msgArr[i].length - 2 >= msgArr[i + 1].length || msgArr[i].length == msgArr[i + 1].length) {
+
+                        if (msgArr[i][0] != "0") {
+
+                            var fkNum = '';
+                            for (var j = 0; j < msgArr[i].length; j++) {
+                                fkNum += "9";
+                            }
+                            fkNum = Number(fkNum);
+
+                            if (2 * fkNum / 3 > Number(msgArr[i])) {
+                                if (msgArr[i].length > 3) {
+                                    var newData = msgArr[i].split("");
+                                    for (var k = msgArr[i].length - 1; k >= 0; k--) {
+                                        if (Number(msgArr[i][k]) - Number(msgArr[i][k - 1]) == 2) {
+
+                                            newData.splice(k - 1);
+                                        } else {
+                                            break;
+                                        }
+                                    }
+                                    msgArr[i] = newData.join().replace(/,/g, "");
+                                }
+                            } else {
+                                console.log('1');
+                                return null;
+                            }
+                        } else {
+                            console.log('2');
+                            return null
+                        }
+                    } else {
+                        console.log('3');
+                        return null;
+                    }
+                }
+            }
+        }
+        return msgArr.join().replace(/,/g, ".");
+    }
+
+    function reorder(old, newval) {
+        // old = sortMe(old)
+        // newval = sortMe(newval)
+        var newArrVal = [];
+        var newOldVal = [];
+
+        console.log('old',old)
+        console.log('newval',newval)
+        for (var i = 0; i < old.length; i++) {
+
+            for (var j = 0; j < newval.length; j++) {
+                if (!newArrVal.includes((newval[j])) && !old.includes((newval[j]))){
+                	newArrVal.push(newval[j])
+                }else if(!newOldVal.includes((newval[j]))) {
+                	newOldVal.push(newval[j])
+                }
+            }
+        }
+        console.log('newArrVal',newArrVal)
+        console.log('newOldVal',newOldVal)
+    }
+
+    function sortMe(val) {
+        for (var i = 0; i < val.length - 1; i++) {
+
+            for (var j = i + 1; j < val.length; j++) {
+                // if ()
+            }
+        }
+    }
+    </script>
+</head>
+
+<body>
+	<h1>Hello</h1>
+</body>
+
+</html>
